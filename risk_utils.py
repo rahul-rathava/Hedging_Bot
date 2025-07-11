@@ -1,9 +1,10 @@
-def calculate_delta_and_hedge(position_size, price_data):
-    spot_price = price_data["spot"]
-    perp_price = price_data["perp"]
+def calculate_delta(position_size, spot_price):
+    return position_size * spot_price
 
-    delta = position_size * spot_price  # Simplified delta = position × price
-    hedge_ratio = 1  # 1:1 hedging
-    hedge_size = delta / perp_price
+def calculate_hedge_size(delta, perp_price):
+    if perp_price == 0:
+        return 0  # prevent divide-by-zero error
+    return delta / perp_price
 
-    return delta, hedge_size
+def is_risk_high(delta, spot_price, threshold):
+    return delta > threshold * spot_price
