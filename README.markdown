@@ -18,7 +18,7 @@
    - `/monitor_risk <asset> <size> <threshold>`: Start monitoring (e.g., `/monitor_risk BTC 1.0 0.5`).
    - Inline button “Hedge Now”: Triggers hedging action.
 
-   ## 🧠 Features
+   ##  Features
    | Feature | Description |
    |--------|-------------|
    | /start | Welcome message |
@@ -29,20 +29,20 @@
    | /hedge_chart | Sends bar chart of hedge sizes |
    | /auto_hedge on/off | Auto-hedging toggle for 24x7 risk control |
 
-   ## 🧪 Sample Interaction
+   ##  Sample Interaction
    ```
    /monitor_risk BTC 1.5 0.3
-   ⚠️ High risk for BTC!
-   🛡️ Suggested Hedge: 1.42 BTC
+    High risk for BTC!
+    Suggested Hedge: 1.42 BTC
 
    /hedge_now
-   ✅ Simulated hedge executed for 1.42 BTC
+    Simulated hedge executed for 1.42 BTC
 
    /hedge_chart
-   [📊 Bar chart image]
+   [ Bar chart image]
 
    /auto_hedge on
-   🟢 Auto-Hedging Enabled
+    Auto-Hedging Enabled
    ```
 
    ## Limitations
