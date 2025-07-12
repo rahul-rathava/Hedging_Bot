@@ -51,4 +51,4 @@
    - No real trades (simulated for demo).
 
    ## Deployment
-   Run `python bot_hedging.py` and interact via Telegram.
+   Run `python telegram_bot.py` and interact via Telegram.
