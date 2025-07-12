@@ -39,35 +39,33 @@ def monitor_risk(update, context):
         if "auto" not in user_state[user_id]:
             user_state[user_id]["auto"] = False  # default to OFF
 
-
         if "history" not in user_state[user_id]:
             user_state[user_id]["history"] = []
 
-
         if is_risk_high(delta, spot_price, threshold):
             if user_state[user_id]["auto"]:
-        # Auto-hedge now
+                # Auto-hedge now
                 user_state[user_id]["history"].append({
                     "asset": asset,
                     "hedge_size": hedge_size
-            })
-            update.message.reply_text(
+                })
+                update.message.reply_text(
                     f"⚠️ Risk detected and auto-hedge triggered!\n✅ Hedged {hedge_size:.4f} {asset}."
-            )
-        else:
-        # Show button if auto mode is off
-            keyboard = [[InlineKeyboardButton("🛡️ Hedge Now", callback_data=f"hedge|{asset}|{hedge_size:.4f}")]]
-            reply_markup = InlineKeyboardMarkup(keyboard)
+                )
+            else:
+                # Show button if auto mode is off
+                keyboard = [[InlineKeyboardButton("🛡️ Hedge Now", callback_data=f"hedge|{asset}|{hedge_size:.4f}")]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
 
-            update.message.reply_text(
-            f"⚠️ High risk for {asset}!\nPosition: {position_size}\nSpot Price: {spot_price}\nDelta: {delta}\nSuggested Hedge Size: {hedge_size:.4f}",
-            reply_markup=reply_markup
-        )
-
+                update.message.reply_text(
+                    f"⚠️ High risk for {asset}!\nPosition: {position_size}\nSpot Price: {spot_price}\nDelta: {delta}\nSuggested Hedge Size: {hedge_size:.4f}",
+                    reply_markup=reply_markup
+                )
         else:
-            update.message.reply_text(" Risk within safe limits.")
+            update.message.reply_text("Risk within safe limits.")
     except Exception as e:
         update.message.reply_text(f"Error: {e}")
+
 
 def hedge_status(update, context):
     user_id = update.effective_user.id
